@@ -4,10 +4,7 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :test-paths ["test/clj" "test/cljc"]
-  :deploy-repositories {"clojars" {:url "https://repo.clojars.org"
-                                   :sign-releases false
-                                   :username :env/clojars_username
-                                   :password :env/clojars_password}}
+  :deploy-repositories [["private" {:url "s3p://swirrl-jars/snapshots/" :no-auth true :sign-releases false}]]
   :codox {:output-path "doc"
           :source-uri "https://github.com/metosin/reitit/{version}/{filepath}#L{line}"
           :metadata {:doc/format :markdown}}
@@ -59,7 +56,8 @@
             [lein-cljsbuild "1.1.8"]
             [lein-cloverage "1.2.4"]
             [lein-codox "0.10.8"]
-            [metosin/bat-test "0.4.4"]]
+            [metosin/bat-test "0.4.4"]
+            [s3-wagon-private "1.3.5"]]
 
   :profiles {:dev {:jvm-opts ^:replace ["-server"]
 
